@@ -1,5 +1,47 @@
 console.log(firebase);
 
+
+function show_teams() {
+  db.collection("teams")
+    .get()
+    .then((mydata) => {
+      let docs = mydata.docs;
+
+      let html = ``;
+
+      docs.forEach((d) => {
+        const team = d.data();
+
+        html += `
+          <div class="box">
+            <h2 class="title is-5">${team.name}</h2>
+            <p><strong>City:</strong> ${team.city}</p>
+            <p><strong>Country:</strong> ${team.country}</p>
+            <p><strong>Fan Count:</strong> ${team.fan_count} million</p>
+            <p><strong>Top Scorers:</strong> ${team.top_scores.join(", ")}</p>
+            <button class="button is-danger is-small mt-2" onclick="del_doc('${d.id}')">Delete</button>
+          </div>
+        `;
+      });
+
+      document.querySelector("#all_teams").innerHTML = html;
+    });
+}
+
+// Call the function to load teams
+show_teams();
+
+// Delete function
+function del_doc(docid) {
+  db.collection("teams")
+    .doc(docid)
+    .delete()
+    .then(() => {
+      alert("Team deleted!");
+      show_teams(); // Refresh the displayed list
+    });
+}
+
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
@@ -72,21 +114,21 @@ let atm={
 
 // // Task2. Querying data
 // // 1.	Show all teams in Spain.
-// db.collection("teams")
-//   .where("country", "==", "spain") // value is case sensitive
-//   .get()
-//   .then(data => {
-//   let mydocs = data.docs;
-//   // if no results
-//   if(mydocs.length == 0){
-//     console.log("no data returned");
-//     return;
-//   }
+db.collection("teams")
+  .where("country", "==", "spain") // value is case sensitive
+  .get()
+  .then(data => {
+  let mydocs = data.docs;
+  // if no results
+  if(mydocs.length == 0){
+    console.log("no data returned");
+    return;
+  }
 
-//   mydocs.forEach(d=>{
-//     console.log(d.data());
-//   });
-// });
+  mydocs.forEach(d=>{
+    console.log(d.data());
+  });
+});
 
 // // 2.	Show all teams in Madrid, Spain
 // db.collection("teams")
