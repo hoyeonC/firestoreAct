@@ -1,4 +1,4 @@
-// console.log(firebase);
+console.log(firebase);
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -70,224 +70,224 @@ db.collection("teams").add(argnation); //after running comment out this
 db.collection("teams").add(atm); //after running comment out this
 
 
-// Task2. Querying data
-// 1.	Show all teams in Spain.
-db.collection("teams")
-  .where("country", "==", "spain") // value is case sensitive
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // Task2. Querying data
+// // 1.	Show all teams in Spain.
+// db.collection("teams")
+//   .where("country", "==", "spain") // value is case sensitive
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 2.	Show all teams in Madrid, Spain
-db.collection("teams")
-  .where("country", "in", ["spain", "Spain"]) // value is case sensitive
-  .where("city", "in", ["madrid", "Madrid"])
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 2.	Show all teams in Madrid, Spain
+// db.collection("teams")
+//   .where("country", "in", ["spain", "Spain"]) // value is case sensitive
+//   .where("city", "in", ["madrid", "Madrid"])
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 3.	Show all national teams (Remember there might be new national teams added later)
-db.collection("teams")
-  .where("city", "in", ["not applicable", "Not Applicable"])
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 3.	Show all national teams (Remember there might be new national teams added later)
+// db.collection("teams")
+//   .where("city", "in", ["not applicable", "Not Applicable"])
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 4.	Show all teams that are not in Spain
-db.collection("teams")
-  .where("country", "not-in", ["spain", "Spain"])
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 4.	Show all teams that are not in Spain
+// db.collection("teams")
+//   .where("country", "not-in", ["spain", "Spain"])
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 5.	Show all teams that are not in Spain or England
-db.collection("teams")
-  .where("country", "not-in", ["spain", "england", "Spain", "England"])
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 5.	Show all teams that are not in Spain or England
+// db.collection("teams")
+//   .where("country", "not-in", ["spain", "england", "Spain", "England"])
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
-// 6.	Show all teams in Spain with more than 700M fans
-db.collection("teams")
-  .where("country", "in", ["spain", "Spain"])
-  .where("fan_count", ">=", 700)
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
+// // 6.	Show all teams in Spain with more than 700M fans
+// db.collection("teams")
+//   .where("country", "in", ["spain", "Spain"])
+//   .where("fan_count", ">=", 700)
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 7.	Show all teams with a number of fans in the range of 500M and 600M 
-db.collection("teams")
-  .where("fan_count", ">=", 500)
-  .where("fan_count", "<=", 700)
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 7.	Show all teams with a number of fans in the range of 500M and 600M 
+// db.collection("teams")
+//   .where("fan_count", ">=", 500)
+//   .where("fan_count", "<=", 700)
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 8.	Show all teams where Ronaldo is a top scorer
-db.collection("teams")
-  .where("top_scores", "array-contains", "Ronaldo")
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 8.	Show all teams where Ronaldo is a top scorer
+// db.collection("teams")
+//   .where("top_scores", "array-contains", "Ronaldo")
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
-// 9.	Show all teams where Ronaldo,  Maradona, or Messi is a top scorer
-db.collection("teams")
-  .where("top_scores", "array-contains-any", ["Ronaldo", "Maradona", "Messi"])
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// // 9.	Show all teams where Ronaldo,  Maradona, or Messi is a top scorer
+// db.collection("teams")
+//   .where("top_scores", "array-contains-any", ["Ronaldo", "Maradona", "Messi"])
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
-
-
-
-
-// Task3 Updating data
-// Update the worldwide fans (primitive data types) as follows:
-
-// 1.	Real Madrid: 811 M worldwide fans. Also, change team name to Real Madrid FC
-db.collection("teams").doc("rm").update({
-  fan_count: 811,
-  name: "Real Madrid FC",
-});
-// 2.	Barcelona: 747 M worldwide fans. Also, change team name to FC Barcelona
-db.collection("teams").doc("br").update({
-  fan_count: 747,
-  name: "FC Barcelona",
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
 
 
-// update the top scorers (array) as follows:
-// 1.	Real Madrid: Remove Hazard from the list and add Crispo to the list
-db.collection("teams") 
-.doc("rm")
-.update({
-  top_scores: firebase.firestore.FieldValue.arrayRemove("Hazard"),
-  top_scores: firebase.firestore.FieldValue.arrayUnion("Crispo"),
-});
+
+// // Task3 Updating data
+// // Update the worldwide fans (primitive data types) as follows:
+
+// // 1.	Real Madrid: 811 M worldwide fans. Also, change team name to Real Madrid FC
+// db.collection("teams").doc("rm").update({
+//   fan_count: 811,
+//   name: "Real Madrid FC",
+// });
+// // 2.	Barcelona: 747 M worldwide fans. Also, change team name to FC Barcelona
+// db.collection("teams").doc("br").update({
+//   fan_count: 747,
+//   name: "FC Barcelona",
+// });
 
 
-// 2.	Barcelona: Remove Puyol from the list and add Deco to the list
-db.collection("teams") 
-.doc("br")
-.update({
-  top_scores: firebase.firestore.FieldValue.arrayRemove("Puyol"),
-  top_scores: firebase.firestore.FieldValue.arrayUnion("Deco"),
-});
+
+// // update the top scorers (array) as follows:
+// // 1.	Real Madrid: Remove Hazard from the list and add Crispo to the list
+// db.collection("teams") 
+// .doc("rm")
+// .update({
+//   top_scores: firebase.firestore.FieldValue.arrayRemove("Hazard"),
+//   top_scores: firebase.firestore.FieldValue.arrayUnion("Crispo"),
+// });
 
 
-// b.	Adding new fields to existing documents
-// Real Madrid: White (home). Black (away)
-db.collection("teams").doc("rm").update({
-  color: {
-    home: "White",
-    away: "Black"
-  }
-});
+// // 2.	Barcelona: Remove Puyol from the list and add Deco to the list
+// db.collection("teams") 
+// .doc("br")
+// .update({
+//   top_scores: firebase.firestore.FieldValue.arrayRemove("Puyol"),
+//   top_scores: firebase.firestore.FieldValue.arrayUnion("Deco"),
+// });
 
-// Barcelona: Red (home). Gold (away)
-db.collection("teams").doc("br").update({
-  color: {
-    home: "Red",
-    away: "Gold"
-  }
-});
 
-// Next, update the jersey colors (object)
-// c.	Real Madrid: Purple jersey color for away matches
-db.collection("teams").doc("rm").update({
-  "away": "Purple",
-});
+// // b.	Adding new fields to existing documents
+// // Real Madrid: White (home). Black (away)
+// db.collection("teams").doc("rm").update({
+//   color: {
+//     home: "White",
+//     away: "Black"
+//   }
+// });
 
-// d.	Barcelona: Pink jersey color for away matches
-db.collection("teams").doc("br").update({
-  "away": "Pink",
-});
+// // Barcelona: Red (home). Gold (away)
+// db.collection("teams").doc("br").update({
+//   color: {
+//     home: "Red",
+//     away: "Gold"
+//   }
+// });
+
+// // Next, update the jersey colors (object)
+// // c.	Real Madrid: Purple jersey color for away matches
+// db.collection("teams").doc("rm").update({
+//   "away": "Purple",
+// });
+
+// // d.	Barcelona: Pink jersey color for away matches
+// db.collection("teams").doc("br").update({
+//   "away": "Pink",
+// });
