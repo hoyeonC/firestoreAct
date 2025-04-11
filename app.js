@@ -60,14 +60,14 @@ let atm={
   fan_count: 400
 };
 
-// add to the database
-db.collection("teams").add(rm); //after running comment out this
-db.collection("teams").add(br); //after running comment out this
-db.collection("teams").add(mu); //after running comment out this
-db.collection("teams").add(mc); //after running comment out this
-db.collection("teams").add(braznation); //after running comment out this
-db.collection("teams").add(argnation); //after running comment out this
-db.collection("teams").add(atm); //after running comment out this
+// // add to the database
+// db.collection("teams").add(rm); //after running comment out this
+// db.collection("teams").add(br); //after running comment out this
+// db.collection("teams").add(mu); //after running comment out this
+// db.collection("teams").add(mc); //after running comment out this
+// db.collection("teams").add(braznation); //after running comment out this
+// db.collection("teams").add(argnation); //after running comment out this
+// db.collection("teams").add(atm); //after running comment out this
 
 
 // // Task2. Querying data
