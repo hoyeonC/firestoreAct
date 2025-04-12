@@ -1,4 +1,4 @@
-console.log(firebase);
+// console.log(firebase);
 
 
 function show_teams() {
@@ -49,7 +49,7 @@ let rm={
   name: "real madrid",
   city: "madrid",
   country:"spain",
-  top_scores:['ronaldo', 'benzema', 'hazard'],
+  top_scores:['Ronaldo', 'Benzema', 'Hazard'],
   fan_count:798
 };
 
@@ -112,28 +112,28 @@ let atm={
 // db.collection("teams").add(atm); //after running comment out this
 
 
-// // Task2. Querying data
-// // 1.	Show all teams in Spain.
-db.collection("teams")
-  .where("country", "==", "spain") // value is case sensitive
-  .get()
-  .then(data => {
-  let mydocs = data.docs;
-  // if no results
-  if(mydocs.length == 0){
-    console.log("no data returned");
-    return;
-  }
+// Task2. Querying data
+// 1.	Show all teams in Spain.
+// db.collection("teams")
+//   .where("country", "==", "spain") // value is case sensitive
+//   .get()
+//   .then(data => {
+//   let mydocs = data.docs;
+//   // if no results
+//   if(mydocs.length == 0){
+//     console.log("no data returned");
+//     return;
+//   }
 
-  mydocs.forEach(d=>{
-    console.log(d.data());
-  });
-});
+//   mydocs.forEach(d=>{
+//     console.log(d.data());
+//   });
+// });
 
 // // 2.	Show all teams in Madrid, Spain
 // db.collection("teams")
-//   .where("country", "in", ["spain", "Spain"]) // value is case sensitive
-//   .where("city", "in", ["madrid", "Madrid"])
+//   .where("country", "==", "spain") // value is case sensitive
+//   .where("city", "==", "madrid")
 //   .get()
 //   .then(data => {
 //   let mydocs = data.docs;
@@ -198,9 +198,10 @@ db.collection("teams")
 //     console.log(d.data());
 //   });
 // });
+
 // // 6.	Show all teams in Spain with more than 700M fans
 // db.collection("teams")
-//   .where("country", "in", ["spain", "Spain"])
+//   .where("country", "==", "spain")
 //   .where("fan_count", ">=", 700)
 //   .get()
 //   .then(data => {
@@ -234,39 +235,39 @@ db.collection("teams")
 //   });
 // });
 
-// // 8.	Show all teams where Ronaldo is a top scorer
-// db.collection("teams")
-//   .where("top_scores", "array-contains", "Ronaldo")
-//   .get()
-//   .then(data => {
-//   let mydocs = data.docs;
-//   // if no results
-//   if(mydocs.length == 0){
-//     console.log("no data returned");
-//     return;
-//   }
+  // // 8.	Show all teams where Ronaldo is a top scorer
+  // db.collection("teams")
+  //   .where("top_scores", "array-contains", "Ronaldo")
+  //   .get()
+  //   .then(data => {
+  //   let mydocs = data.docs;
+  //   // if no results
+  //   if(mydocs.length == 0){
+  //     console.log("no data returned");
+  //     return;
+  //   }
 
-//   mydocs.forEach(d=>{
-//     console.log(d.data());
-//   });
-// });
+  //   mydocs.forEach(d=>{
+  //     console.log(d.data());
+  //   });
+  // });
 
-// // 9.	Show all teams where Ronaldo,  Maradona, or Messi is a top scorer
-// db.collection("teams")
-//   .where("top_scores", "array-contains-any", ["Ronaldo", "Maradona", "Messi"])
-//   .get()
-//   .then(data => {
-//   let mydocs = data.docs;
-//   // if no results
-//   if(mydocs.length == 0){
-//     console.log("no data returned");
-//     return;
-//   }
+  // // 9.	Show all teams where Ronaldo,  Maradona, or Messi is a top scorer
+  // db.collection("teams")
+  //   .where("top_scores", "array-contains-any", ["Ronaldo", "Maradona", "Messi"])
+  //   .get()
+  //   .then(data => {
+  //   let mydocs = data.docs;
+  //   // if no results
+  //   if(mydocs.length == 0){
+  //     console.log("no data returned");
+  //     return;
+  //   }
 
-//   mydocs.forEach(d=>{
-//     console.log(d.data());
-//   });
-// });
+  //   mydocs.forEach(d=>{
+  //     console.log(d.data());
+  //   });
+  // });
 
 
 
