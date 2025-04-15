@@ -113,6 +113,8 @@ let atm={
 
 
 // Task2. Querying data
+
+// check in console to see the query is correct
 // 1.	Show all teams in Spain.
 // db.collection("teams")
 //   .where("country", "==", "spain") // value is case sensitive
@@ -346,51 +348,52 @@ function runAllQueries() {
   .then(data => renderQueryResults("query9", data.docs));
 }
 
-// Call this after page load
-window.onload = function() {
-  show_teams();
-  runAllQueries();
-};
 
 
-// // Task3 Updating data
-// // Update the worldwide fans (primitive data types) as follows:
+
+
+// // // Task3 Updating data
+// // // Update the worldwide fans (primitive data types) as follows:
 
 // // 1.	Real Madrid: 811 M worldwide fans. Also, change team name to Real Madrid FC
-// db.collection("teams").doc("rm").update({
+// db.collection("teams").doc("vD7494ujBuWdwjKqXtKS").update({
 //   fan_count: 811,
 //   name: "Real Madrid FC",
 // });
 // // 2.	Barcelona: 747 M worldwide fans. Also, change team name to FC Barcelona
-// db.collection("teams").doc("br").update({
+// db.collection("teams").doc("OMqo3vTC4zq8iimTqXDD").update({
 //   fan_count: 747,
 //   name: "FC Barcelona",
 // });
 
 
 
-// // update the top scorers (array) as follows:
+// // // update the top scorers (array) as follows:
 // // 1.	Real Madrid: Remove Hazard from the list and add Crispo to the list
-// db.collection("teams") 
-// .doc("rm")
-// .update({
+// // Remove Hazard
+// db.collection("teams").doc("vD7494ujBuWdwjKqXtKS").update({
 //   top_scores: firebase.firestore.FieldValue.arrayRemove("Hazard"),
+// });
+// // Then add Crispo
+// db.collection("teams").doc("vD7494ujBuWdwjKqXtKS").update({
 //   top_scores: firebase.firestore.FieldValue.arrayUnion("Crispo"),
 // });
 
 
 // // 2.	Barcelona: Remove Puyol from the list and add Deco to the list
-// db.collection("teams") 
-// .doc("br")
-// .update({
+// // Remove Puyol
+// db.collection("teams").doc("OMqo3vTC4zq8iimTqXDD").update({
 //   top_scores: firebase.firestore.FieldValue.arrayRemove("Puyol"),
+// });
+// // Add Deco
+// db.collection("teams").doc("OMqo3vTC4zq8iimTqXDD").update({
 //   top_scores: firebase.firestore.FieldValue.arrayUnion("Deco"),
 // });
 
 
 // // b.	Adding new fields to existing documents
 // // Real Madrid: White (home). Black (away)
-// db.collection("teams").doc("rm").update({
+// db.collection("teams").doc("vD7494ujBuWdwjKqXtKS").update({
 //   color: {
 //     home: "White",
 //     away: "Black"
@@ -398,7 +401,7 @@ window.onload = function() {
 // });
 
 // // Barcelona: Red (home). Gold (away)
-// db.collection("teams").doc("br").update({
+// db.collection("teams").doc("OMqo3vTC4zq8iimTqXDD").update({
 //   color: {
 //     home: "Red",
 //     away: "Gold"
@@ -407,11 +410,16 @@ window.onload = function() {
 
 // // Next, update the jersey colors (object)
 // // c.	Real Madrid: Purple jersey color for away matches
-// db.collection("teams").doc("rm").update({
-//   "away": "Purple",
+// db.collection("teams").doc("vD7494ujBuWdwjKqXtKS").update({
+//   "color.away": "Purple",
 // });
 
 // // d.	Barcelona: Pink jersey color for away matches
-// db.collection("teams").doc("br").update({
-//   "away": "Pink",
+// db.collection("teams").doc("OMqo3vTC4zq8iimTqXDD").update({
+//   "color.away": "Pink",
 // });
+
+
+// Call this after page load
+show_teams();
+runAllQueries();
