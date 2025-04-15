@@ -12,6 +12,16 @@ function show_teams() {
       docs.forEach((d) => {
         const team = d.data();
 
+        let colorHtml = "";
+        if (team.color) {
+          if (team.color.home) {
+            colorHtml += `<p><strong>Home Jersey Color:</strong> ${team.color.home}</p>`;
+          }
+          if (team.color.away) {
+            colorHtml += `<p><strong>Away Jersey Color:</strong> ${team.color.away}</p>`;
+          }
+        }
+
         html += `
           <div class="box">
             <h2 class="title is-5">${team.name}</h2>
@@ -19,6 +29,7 @@ function show_teams() {
             <p><strong>Country:</strong> ${team.country}</p>
             <p><strong>Fan Count:</strong> ${team.fan_count} million</p>
             <p><strong>Top Scorers:</strong> ${team.top_scores.join(", ")}</p>
+            ${colorHtml}
             <button class="button is-danger is-small mt-2" onclick="del_doc('${d.id}')">Delete</button>
           </div>
         `;
@@ -27,9 +38,6 @@ function show_teams() {
       document.querySelector("#all_teams").innerHTML = html;
     });
 }
-
-// Call the function to load teams
-show_teams();
 
 // Delete function
 function del_doc(docid) {
