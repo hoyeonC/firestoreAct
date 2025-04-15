@@ -270,6 +270,87 @@ let atm={
   // });
 
 
+// Display all output directly on the browser page
+function renderQueryResults(containerId, docs) {
+  const container = document.getElementById(containerId);
+  let html = '';
+  docs.forEach(d => {
+    const team = d.data();
+    html += `
+      <div class="notification is-light">
+        <strong>${team.name}</strong> (${team.city}, ${team.country})<br>
+        Fans: ${team.fan_count}M<br>
+        Top Scorers: ${team.top_scores.join(", ")}
+      </div>
+    `;
+  });
+  container.innerHTML += html;
+}
+
+function runAllQueries() {
+  // 1. Teams in Spain
+  db.collection("teams")
+  .where("country", "==", "spain")
+  .get()
+  .then(data => renderQueryResults("query1", data.docs));
+
+  // 2. Teams in Madrid, Spain
+  db.collection("teams")
+  .where("country", "==", "spain")
+  .where("city", "==", "madrid")
+  .get()
+  .then(data => renderQueryResults("query2", data.docs));
+
+  // 3. National Teams
+  db.collection("teams")
+  .where("city", "in", ["not applicable", "Not Applicable"])
+  .get()
+  .then(data => renderQueryResults("query3", data.docs));
+
+  // 4. Teams not in Spain
+  db.collection("teams")
+  .where("country", "not-in", ["spain", "Spain"])
+  .get()
+  .then(data => renderQueryResults("query4", data.docs));
+
+  // 5. Teams not in Spain or England
+  db.collection("teams")
+  .where("country", "not-in", ["spain", "england", "Spain", "England"])
+  .get()
+  .then(data => renderQueryResults("query5", data.docs));
+
+  // 6. Teams in Spain with ≥700M fans
+  db.collection("teams")
+  .where("country", "==", "spain")
+  .where("fan_count", ">=", 700)
+  .get()
+  .then(data => renderQueryResults("query6", data.docs));
+
+  // 7. Teams with fans between 500M–700M
+  db.collection("teams")
+  .where("fan_count", ">=", 500)
+  .where("fan_count", "<=", 700)
+  .get()
+  .then(data => renderQueryResults("query7", data.docs));
+
+  // 8. Teams where Ronaldo is a top scorer
+  db.collection("teams")
+  .where("top_scores", "array-contains", "Ronaldo")
+  .get()
+  .then(data => renderQueryResults("query8", data.docs));
+
+  // 9. Teams where Ronaldo, Maradona, or Messi is a top scorer
+  db.collection("teams")
+  .where("top_scores", "array-contains-any", ["Ronaldo", "Maradona", "Messi"])
+  .get()
+  .then(data => renderQueryResults("query9", data.docs));
+}
+
+// Call this after page load
+window.onload = function() {
+  show_teams();
+  runAllQueries();
+};
 
 
 // // Task3 Updating data
